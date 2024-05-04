@@ -30,6 +30,15 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("CoinKeeper"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add),
+          )
+        ],
+      ),
       body: Column(
         children: [
           const Text("hyy"),
