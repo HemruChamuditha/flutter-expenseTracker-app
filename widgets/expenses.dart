@@ -27,6 +27,22 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+//Created a Modal --> When click the icon button - Start
+  void createModal() {
+    showModalBottomSheet(
+        context: context,
+        builder: (ctx) {
+          return const Column(
+            children: [
+              Text("hy how are you"),
+              
+            ],
+          );
+        });
+  }
+//Created a Modal --> When click the icon button - End
+
+
   @override
   Widget build(context) {
     return Scaffold(
@@ -34,7 +50,7 @@ class _ExpensesState extends State<Expenses> {
         title: const Text("CoinKeeper"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: createModal,
             icon: const Icon(Icons.add),
           )
         ],
