@@ -23,10 +23,12 @@ class _NewExpenseState extends State<NewExpense> {
   then saveNewExpense is updated to hold a reference to this new object */
 
   final _saveNewExpense = TextEditingController();
+  final _saveNewExpenseCost = TextEditingController();
 
   @override
   void dispose() {
     _saveNewExpense.dispose();
+    _saveNewExpenseCost.dispose();
     super.dispose();
   }
 
@@ -41,17 +43,36 @@ class _NewExpenseState extends State<NewExpense> {
             maxLength: 40,
             decoration: const InputDecoration(label: Text("Expense Title")),
           ),
+          TextField(
+            controller: _saveNewExpenseCost,
+            maxLength: 23,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              prefixText: "\$ ",
+              label: Text("Cost"),
+            ),
+          ),
           Row(
             children: [
+              TextButton.icon(
+                onPressed: () {},
+                icon: const Icon(Icons.cancel_outlined,
+                    color: Color.fromARGB(255, 255, 33, 33)),
+                label: const Text("Cancel"),
+              ),
               ElevatedButton.icon(
                 onPressed: () {
                   print(_saveNewExpense.text);
+                  print(_saveNewExpenseCost.text);
                 },
-                icon: const Icon(Icons.save_as_rounded),
+                icon: const Icon(
+                  Icons.save_as_rounded,
+                  color: Color.fromARGB(255, 53, 53, 243),
+                ),
                 label: const Text("Save Expense"),
               ),
             ],
-          )
+          ),
         ],
       ),
     );
