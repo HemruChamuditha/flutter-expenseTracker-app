@@ -10,6 +10,24 @@ class NewExpense extends StatefulWidget {
 }
 
 class _NewExpenseState extends State<NewExpense> {
+  //saveNewExpense is a reference variable, meaning it holds a reference
+  //(or a pointer) to an object in memory.When you initialize saveNewExpense
+  // with TextEditingController(), it creates a new TextEditingController object
+  // in memory, and saveNewExpense holds a reference to this object.the dispose()
+  // method is called, which disposes of the TextEditingController object.
+  //This means the object is removed from memory, but saveNewExpense still
+  //holds its reference. When the modal is reopened, you're not changing the reference
+  //Instead, you're creating a new TextEditingController object in memory, and
+  //then saveNewExpense is updated to hold a reference to this new object
+
+  final saveNewExpense = TextEditingController();
+
+  @override
+  void dispose() {
+    saveNewExpense.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(context) {
     return Padding(
