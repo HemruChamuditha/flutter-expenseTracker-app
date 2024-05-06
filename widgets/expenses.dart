@@ -1,5 +1,6 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/expenses.list/expenses_list.dart';
+import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -30,18 +31,13 @@ class _ExpensesState extends State<Expenses> {
 //Created a Modal --> When click the icon button - Start
   void createModal() {
     showModalBottomSheet(
-        context: context,
-        builder: (ctx) {
-          return const Column(
-            children: [
-              Text("hy how are you"),
-              
-            ],
-          );
-        });
+      context: context,
+      builder: (ctx) {
+        return const NewExpense();
+      },
+    );
   }
 //Created a Modal --> When click the icon button - End
-
 
   @override
   Widget build(context) {
