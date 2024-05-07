@@ -25,6 +25,17 @@ class _NewExpenseState extends State<NewExpense> {
   final _saveNewExpense = TextEditingController();
   final _saveNewExpenseCost = TextEditingController();
 
+  void _presentDatePicker() {
+    final now = DateTime.now();
+    final firstDate = DateTime(now.year - 1);
+    showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: firstDate, //Lowest possible date
+      lastDate: now, //maximum date that can be selected
+    );
+  }
+
   @override
   void dispose() {
     _saveNewExpense.dispose();
@@ -43,23 +54,52 @@ class _NewExpenseState extends State<NewExpense> {
             maxLength: 40,
             decoration: const InputDecoration(label: Text("Expense Title")),
           ),
-          TextField(
-            controller: _saveNewExpenseCost,
-            maxLength: 23,
-            keyboardType: TextInputType.number,
-            decoration: const InputDecoration(
-              prefixText: "\$ ",
-              label: Text("Cost"),
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _saveNewExpenseCost,
+                  maxLength: 23,
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    prefixText: "\$ ",
+                    label: Text("Cost"),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 12,
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text("Selected Date"),
+                    IconButton(
+                      onPressed: _presentDatePicker,
+                      icon: const Icon(Icons.calendar_month),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
           Row(
             children: [
+              //Cancel Button Start
               TextButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.cancel_outlined,
-                    color: Color.fromARGB(255, 255, 33, 33)),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(
+                  Icons.cancel_outlined,
+                  color: Color.fromARGB(255, 255, 33, 33),
+                ),
                 label: const Text("Cancel"),
               ),
+              //Cancel Button End
+
               ElevatedButton.icon(
                 onPressed: () {
                   print(_saveNewExpense.text);
