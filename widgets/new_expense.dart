@@ -30,7 +30,7 @@ class _NewExpenseState extends State<NewExpense> {
     final firstDate = DateTime(now.year - 1);
     showDatePicker(
       context: context,
-      initialDate: now,
+      initialDate: now, // current date
       firstDate: firstDate, //Lowest possible date
       lastDate: now, //maximum date that can be selected
     );
