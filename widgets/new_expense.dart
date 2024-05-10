@@ -26,6 +26,7 @@ class _NewExpenseState extends State<NewExpense> {
   final _saveNewExpense = TextEditingController();
   final _saveNewExpenseCost = TextEditingController();
   DateTime? _chosenDate;
+  Category _selectedCategory = Category.travel;
 
   void _presentDatePicker() async {
     final now = DateTime.now();
@@ -60,7 +61,9 @@ class _NewExpenseState extends State<NewExpense> {
           TextField(
             controller: _saveNewExpense,
             maxLength: 40,
-            decoration: const InputDecoration(label: Text("Expense Title")),
+            decoration: const InputDecoration(
+              label: Text("Expense Title"),
+            ),
           ),
           Row(
             children: [
@@ -85,7 +88,7 @@ class _NewExpenseState extends State<NewExpense> {
                   children: [
                     Text(
                       _chosenDate == null
-                          ? " dDate"
+                          ? "No Date"
                           : dateTimeFormatter.format(_chosenDate!),
                     ),
                     IconButton(
@@ -99,6 +102,30 @@ class _NewExpenseState extends State<NewExpense> {
           ),
           Row(
             children: [
+              //it means you have a list that can hold DropdownMenuItem objects,
+              //and those objects can hold values of any type due to the dynamic
+              // keyword.
+              DropdownButton(
+                  value: _selectedCategory,
+                  items: Category.values
+                      .map(
+                        (singleCategoryItem) => DropdownMenuItem(
+                          value: singleCategoryItem,
+                          child: Text(
+                            singleCategoryItem.name.toUpperCase(),
+                          ),
+                        ),
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return;
+                    }
+                    setState(() {
+                      _selectedCategory = value;
+                      print(_selectedCategory);
+                    });
+                  }),
               //Cancel Button Start
               TextButton.icon(
                 onPressed: () {
