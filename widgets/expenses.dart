@@ -33,11 +33,20 @@ class _ExpensesState extends State<Expenses> {
     showModalBottomSheet(
       context: context,
       builder: (ctx) {
-        return const NewExpense();
+        return NewExpense(
+          onSavedExpense: addNewExpense,
+        );
       },
     );
   }
 //Created a Modal --> When click the icon button - End
+
+  void addNewExpense(Expense expense) {
+    print("hyy");
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
 
   @override
   Widget build(context) {

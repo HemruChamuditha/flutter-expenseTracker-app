@@ -2,7 +2,9 @@ import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  const NewExpense({super.key, required this.onSavedExpense});
+
+  final void Function(Expense expense) onSavedExpense;
 
   @override
   State<NewExpense> createState() {
@@ -74,6 +76,14 @@ class _NewExpenseState extends State<NewExpense> {
       );
       return; //full function eknm eliyata ynwa
     }
+
+    widget.onSavedExpense(
+      Expense(
+          title: _saveNewExpense.text,
+          amount: double.tryParse(_saveNewExpenseCost.text)!,
+          date: _chosenDate!,
+          category: _selectedCategory),
+    );
   }
 
   @override
@@ -140,26 +150,28 @@ class _NewExpenseState extends State<NewExpense> {
               //and those objects can hold values of any type due to the dynamic
               // keyword.
               DropdownButton(
-                  value: _selectedCategory,
-                  items: Category.values
-                      .map(
-                        (singleCategoryItem) => DropdownMenuItem(
-                          value: singleCategoryItem,
-                          child: Text(
-                            singleCategoryItem.name.toUpperCase(),
-                          ),
+                value: _selectedCategory,
+                items: Category.values
+                    .map(
+                      (singleCategoryItem) => DropdownMenuItem(
+                        value: singleCategoryItem,
+                        child: Text(
+                          singleCategoryItem.name.toUpperCase(),
                         ),
-                      )
-                      .toList(),
-                  onChanged: (value) {
-                    if (value == null) {
-                      return;
-                    }
-                    setState(() {
+                      ),
+                    )
+                    .toList(),
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  setState(
+                    () {
                       _selectedCategory = value;
-                      print(_selectedCategory);
-                    });
-                  }),
+                    },
+                  );
+                },
+              ),
               const Spacer(),
               //Cancel Button Start
               TextButton.icon(
