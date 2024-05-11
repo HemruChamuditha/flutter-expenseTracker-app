@@ -84,6 +84,7 @@ class _NewExpenseState extends State<NewExpense> {
           date: _chosenDate!,
           category: _selectedCategory),
     );
+    Navigator.pop(context);
   }
 
   @override
@@ -96,7 +97,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.fromLTRB(16, 43, 16, 16),
       child: Column(
         children: [
           TextField(
