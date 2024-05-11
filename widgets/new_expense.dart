@@ -28,6 +28,7 @@ class _NewExpenseState extends State<NewExpense> {
   DateTime? _chosenDate;
   Category _selectedCategory = Category.travel;
 
+//Showing calander
   void _presentDatePicker() async {
     final now = DateTime.now();
     final firstDate = DateTime(now.year - 1);
@@ -43,6 +44,36 @@ class _NewExpenseState extends State<NewExpense> {
         _chosenDate = selectedDate;
       },
     );
+  }
+
+// Validating and Saving Expense data
+
+  void _saveNewExpenseData() {
+    final isNewCostInvalid = double.tryParse(_saveNewExpenseCost.text) == null;
+    final isChosenDateInvalid = _chosenDate == null;
+
+    if (_saveNewExpense.text.trim().isEmpty ||
+        isChosenDateInvalid ||
+        isNewCostInvalid) {
+      showDialog(
+        context: context,
+        builder: (ctx) {
+          return AlertDialog(
+            title: const Text("Invalid Input"),
+            content: const Text("Please Enter valid Title, Amount and a Date"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(ctx);
+                },
+                child: const Text("Okay"),
+              )
+            ],
+          );
+        },
+      );
+      return; //full function eknm eliyata ynwa
+    }
   }
 
   @override
@@ -100,6 +131,9 @@ class _NewExpenseState extends State<NewExpense> {
               )
             ],
           ),
+          const SizedBox(
+            height: 18,
+          ),
           Row(
             children: [
               //it means you have a list that can hold DropdownMenuItem objects,
@@ -126,6 +160,7 @@ class _NewExpenseState extends State<NewExpense> {
                       print(_selectedCategory);
                     });
                   }),
+              const Spacer(),
               //Cancel Button Start
               TextButton.icon(
                 onPressed: () {
@@ -140,11 +175,7 @@ class _NewExpenseState extends State<NewExpense> {
               //Cancel Button End
 
               ElevatedButton.icon(
-                onPressed: () {
-                  print(_saveNewExpense.text);
-                  print(_saveNewExpenseCost.text);
-                  print(_chosenDate);
-                },
+                onPressed: _saveNewExpenseData,
                 icon: const Icon(
                   Icons.save_as_rounded,
                   color: Color.fromARGB(255, 53, 53, 243),
