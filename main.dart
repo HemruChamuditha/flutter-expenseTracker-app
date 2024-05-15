@@ -16,7 +16,7 @@ void main() {
           foregroundColor: kColorScheme.secondaryContainer,
         ),
         cardTheme: const CardTheme().copyWith(
-          color: kColorScheme.secondary,
+          color: const Color.fromARGB(115, 8, 44, 105),
           margin: const EdgeInsets.fromLTRB(13, 4, 13, 8),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -28,7 +28,7 @@ void main() {
         textTheme: ThemeData().textTheme.copyWith(
               titleLarge: TextStyle(
                 fontWeight: FontWeight.normal,
-                fontSize: 17,
+                fontSize: 23,
                 color: kColorScheme.onSecondaryContainer,
               ),
             ),
