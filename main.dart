@@ -13,9 +13,11 @@ void main() {
         useMaterial3: true,
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: kColorScheme.onPrimaryContainer,
-          foregroundColor: kColorScheme.secondaryContainer,
-        ),
+            backgroundColor: kColorScheme.onPrimaryContainer,
+            foregroundColor: kColorScheme.secondaryContainer,
+            titleTextStyle: const TextStyle(
+              fontSize: 16,
+            ),),
         //copyWith is a OBJECT FUNCTION
         cardTheme: const CardTheme().copyWith(
           color: const Color.fromARGB(115, 8, 44, 105),
@@ -32,7 +34,7 @@ void main() {
               titleLarge: TextStyle(
                 fontWeight: FontWeight.normal,
                 fontSize: 23,
-                color: kColorScheme.onSecondaryContainer,
+                color: kColorScheme.onPrimary,
               ),
             ),
       ),
