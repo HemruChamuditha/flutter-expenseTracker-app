@@ -5,6 +5,9 @@ var kColorScheme = ColorScheme.fromSeed(
   //fromARGB is a alternative CONSTRUCTOR FUNCTION
   seedColor: const Color.fromARGB(255, 0, 115, 255),
 );
+var kDarkColorScheme = ColorScheme.fromSeed(
+  seedColor: const Color.fromARGB(255, 249, 49, 35),
+);
 
 void main() {
   runApp(
@@ -13,11 +16,12 @@ void main() {
         useMaterial3: true,
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-            backgroundColor: kColorScheme.onPrimaryContainer,
-            foregroundColor: kColorScheme.secondaryContainer,
-            titleTextStyle: const TextStyle(
-              fontSize: 16,
-            ),),
+          backgroundColor: kColorScheme.onPrimaryContainer,
+          foregroundColor: kColorScheme.secondaryContainer,
+          titleTextStyle: const TextStyle(
+            fontSize: 16,
+          ),
+        ),
         //copyWith is a OBJECT FUNCTION
         cardTheme: const CardTheme().copyWith(
           color: const Color.fromARGB(115, 8, 44, 105),
