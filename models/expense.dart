@@ -5,16 +5,13 @@ import 'package:uuid/uuid.dart';
 const uuid = Uuid();
 final dateTimeFormatter = DateFormat.yMd();
 
-enum Category {
-  travel,
-  dance,
-  design,
-}
+enum Category { food, leisure, work, travel }
 
 const categoryIcons = {
   Category.travel: Icons.train,
-  Category.dance: Icons.social_distance,
-  Category.design: Icons.design_services,
+  Category.leisure: Icons.forest,
+  Category.work: Icons.work_history_outlined,
+  Category.food: Icons.food_bank_outlined,
 };
 
 class Expense {
@@ -42,7 +39,7 @@ class ExpenseBucket {
     required this.expenses,
   });
 
-//this constructor will provide a list that contains Expenses 
+//this constructor will provide a list that contains Expenses
 //that can be uniquely identified into given category
   ExpenseBucket.filterExpensesByCategory(
     List<Expense> allExpenses,
@@ -61,7 +58,6 @@ class ExpenseBucket {
     for (final expense in expenses) {
       sum = sum + expense.amount;
     }
-
     return sum;
   }
 }

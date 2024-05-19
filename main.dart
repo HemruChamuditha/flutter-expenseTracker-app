@@ -20,6 +20,7 @@ void main() {
           color: const Color.fromARGB(115, 8, 44, 105),
           margin: const EdgeInsets.fromLTRB(16, 4, 16, 8),
         ),
+        
         elevatedButtonTheme: ElevatedButtonThemeData(
           //styleFrom static method
           style: ElevatedButton.styleFrom(
@@ -35,6 +36,8 @@ void main() {
           ),
         ),
       ),
+
+      //light theme setting by default
       theme: ThemeData().copyWith(
         useMaterial3: true,
         colorScheme: kColorScheme,
