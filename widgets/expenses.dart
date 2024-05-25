@@ -32,6 +32,7 @@ class _ExpensesState extends State<Expenses> {
 //Created a Modal --> When click the icon button - Start
   void createModal() {
     showModalBottomSheet(
+      useSafeArea: true,
       isScrollControlled: true,
       context: context,
       builder: (ctx) {
