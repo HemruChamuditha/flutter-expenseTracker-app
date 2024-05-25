@@ -93,6 +93,8 @@ class _ExpensesState extends State<Expenses> {
         ],
       ),
       body: width < 415
+          //Height is infinity
+          //Width depends on childern
           ? Column(
               children: [
                 Chart(expenses: _registeredExpenses),
@@ -103,6 +105,8 @@ class _ExpensesState extends State<Expenses> {
                 ),
               ],
             )
+          //Row has a Width of infinity
+          //Height is depends on its' childern
           : Row(
               children: [
                 Expanded(child: Chart(expenses: _registeredExpenses)),
